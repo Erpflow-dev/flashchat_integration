@@ -1,0 +1,228 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-01 00:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "campaign_name",
+  "message_type",
+  "status",
+  "column_break_4",
+  "send_at",
+  "flashchat_campaign_id",
+  "message_section",
+  "message_template",
+  "message_content",
+  "audience_section",
+  "target_audience",
+  "customer_group",
+  "territory",
+  "column_break_12",
+  "lead_source",
+  "contact_filters",
+  "statistics_section",
+  "total_recipients",
+  "messages_sent",
+  "messages_delivered",
+  "column_break_17",
+  "messages_failed",
+  "success_rate",
+  "total_cost"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FCC-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "campaign_name",
+   "fieldtype": "Data",
+   "label": "Campaign Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "message_type",
+   "fieldtype": "Select",
+   "label": "Message Type",
+   "options": "SMS\nWhatsApp",
+   "reqd": 1,
+   "default": "SMS"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nScheduled\nProcessing\nCompleted\nFailed\nCancelled",
+   "default": "Draft"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "send_at",
+   "fieldtype": "Datetime",
+   "label": "Send At"
+  },
+  {
+   "fieldname": "flashchat_campaign_id",
+   "fieldtype": "Data",
+   "label": "FlashChat Campaign ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "message_section",
+   "fieldtype": "Section Break",
+   "label": "Message"
+  },
+  {
+   "fieldname": "message_template",
+   "fieldtype": "Link",
+   "label": "Message Template",
+   "options": "Message Template"
+  },
+  {
+   "fieldname": "message_content",
+   "fieldtype": "Text",
+   "label": "Message Content",
+   "reqd": 1
+  },
+  {
+   "fieldname": "audience_section",
+   "fieldtype": "Section Break",
+   "label": "Target Audience"
+  },
+  {
+   "fieldname": "target_audience",
+   "fieldtype": "Select",
+   "label": "Target Audience",
+   "options": "All Contacts\nCustomers\nLeads\nCustom Filter",
+   "default": "All Contacts"
+  },
+  {
+   "fieldname": "customer_group",
+   "fieldtype": "Link",
+   "label": "Customer Group",
+   "options": "Customer Group",
+   "depends_on": "eval:doc.target_audience == 'Customers'"
+  },
+  {
+   "fieldname": "territory",
+   "fieldtype": "Link",
+   "label": "Territory",
+   "options": "Territory",
+   "depends_on": "eval:doc.target_audience in ['Customers', 'Leads']"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lead_source",
+   "fieldtype": "Link",
+   "label": "Lead Source",
+   "options": "Lead Source",
+   "depends_on": "eval:doc.target_audience == 'Leads'"
+  },
+  {
+   "fieldname": "contact_filters",
+   "fieldtype": "Code",
+   "label": "Contact Filters (JSON)",
+   "options": "JSON",
+   "depends_on": "eval:doc.target_audience == 'Custom Filter'"
+  },
+  {
+   "fieldname": "statistics_section",
+   "fieldtype": "Section Break",
+   "label": "Statistics",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_recipients",
+   "fieldtype": "Int",
+   "label": "Total Recipients",
+   "read_only": 1
+  },
+  {
+   "fieldname": "messages_sent",
+   "fieldtype": "Int",
+   "label": "Messages Sent",
+   "read_only": 1
+  },
+  {
+   "fieldname": "messages_delivered",
+   "fieldtype": "Int",
+   "label": "Messages Delivered",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "messages_failed",
+   "fieldtype": "Int",
+   "label": "Messages Failed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "success_rate",
+   "fieldtype": "Percent",
+   "label": "Success Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_cost",
+   "fieldtype": "Currency",
+   "label": "Total Cost",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FlashChat Integration",
+ "name": "FlashChat Campaign",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "campaign_name",
+ "track_changes": 1
+}

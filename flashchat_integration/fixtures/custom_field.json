@@ -1,0 +1,66 @@
+[
+  {
+    "doctype": "Custom Field",
+    "dt": "Contact",
+    "fieldname": "flashchat_section",
+    "label": "FlashChat Integration",
+    "fieldtype": "Section Break",
+    "insert_after": "mobile_no",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field", 
+    "dt": "Contact",
+    "fieldname": "flashchat_id",
+    "label": "FlashChat ID",
+    "fieldtype": "Data",
+    "read_only": 1,
+    "insert_after": "flashchat_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "dt": "Contact", 
+    "fieldname": "flashchat_sync_status",
+    "label": "Sync Status",
+    "fieldtype": "Select",
+    "options": "\nPending\nSynced\nFailed",
+    "default": "Pending",
+    "insert_after": "flashchat_id"
+  },
+  {
+    "doctype": "Custom Field",
+    "dt": "Customer",
+    "fieldname": "flashchat_section",
+    "label": "FlashChat Integration", 
+    "fieldtype": "Section Break",
+    "insert_after": "mobile_no",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "dt": "Customer",
+    "fieldname": "flashchat_id",
+    "label": "FlashChat ID",
+    "fieldtype": "Data",
+    "read_only": 1,
+    "insert_after": "flashchat_section"
+  },
+  {
+    "doctype": "Custom Field",
+    "dt": "Lead",
+    "fieldname": "flashchat_section", 
+    "label": "FlashChat Integration",
+    "fieldtype": "Section Break",
+    "insert_after": "mobile_no",
+    "collapsible": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "dt": "Lead",
+    "fieldname": "flashchat_id",
+    "label": "FlashChat ID", 
+    "fieldtype": "Data",
+    "read_only": 1,
+    "insert_after": "flashchat_section"
+  }
+]

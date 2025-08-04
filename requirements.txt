@@ -1,0 +1,5 @@
+
+# frappe -- is installed by default. add dependencies here.
+requests>=2.25.0
+python-dateutil>=2.8.0
+cryptography>=3.0.0

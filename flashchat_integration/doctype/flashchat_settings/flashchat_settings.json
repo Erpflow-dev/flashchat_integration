@@ -1,0 +1,211 @@
+
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:settings_name",
+ "creation": "2025-01-01 00:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "settings_name",
+  "basic_settings_section",
+  "base_url",
+  "api_secret",
+  "column_break_4",
+  "default_sim",
+  "sms_mode",
+  "services_section",
+  "enable_sms",
+  "enable_whatsapp",
+  "enable_otp",
+  "column_break_10",
+  "enable_order_notifications",
+  "enable_delivery_notifications",
+  "auto_sync_contacts",
+  "rate_limits_section",
+  "sms_rate_limit",
+  "whatsapp_rate_limit",
+  "otp_rate_limit",
+  "column_break_16",
+  "log_retention_days",
+  "webhook_settings_section",
+  "enable_webhooks",
+  "webhook_secret",
+  "column_break_20",
+  "webhook_url"
+ ],
+ "fields": [
+  {
+   "fieldname": "settings_name",
+   "fieldtype": "Data",
+   "label": "Settings Name",
+   "reqd": 1,
+   "default": "FlashChat Settings"
+  },
+  {
+   "fieldname": "basic_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Basic Settings"
+  },
+  {
+   "fieldname": "base_url",
+   "fieldtype": "Data",
+   "label": "Base URL",
+   "reqd": 1,
+   "default": "https://flashchat.xyz/api"
+  },
+  {
+   "fieldname": "api_secret",
+   "fieldtype": "Password",
+   "label": "API Secret",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "default_sim",
+   "fieldtype": "Select",
+   "label": "Default SIM",
+   "options": "1\n2",
+   "default": "1"
+  },
+  {
+   "fieldname": "sms_mode",
+   "fieldtype": "Select",
+   "label": "SMS Mode",
+   "options": "devices\ncredits",
+   "default": "devices"
+  },
+  {
+   "fieldname": "services_section",
+   "fieldtype": "Section Break",
+   "label": "Services"
+  },
+  {
+   "fieldname": "enable_sms",
+   "fieldtype": "Check",
+   "label": "Enable SMS",
+   "default": 1
+  },
+  {
+   "fieldname": "enable_whatsapp",
+   "fieldtype": "Check",
+   "label": "Enable WhatsApp",
+   "default": 1
+  },
+  {
+   "fieldname": "enable_otp",
+   "fieldtype": "Check",
+   "label": "Enable OTP",
+   "default": 1
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "enable_order_notifications",
+   "fieldtype": "Check",
+   "label": "Enable Order Notifications",
+   "default": 1
+  },
+  {
+   "fieldname": "enable_delivery_notifications",
+   "fieldtype": "Check",
+   "label": "Enable Delivery Notifications",
+   "default": 1
+  },
+  {
+   "fieldname": "auto_sync_contacts",
+   "fieldtype": "Check",
+   "label": "Auto Sync Contacts",
+   "default": 1
+  },
+  {
+   "fieldname": "rate_limits_section",
+   "fieldtype": "Section Break",
+   "label": "Rate Limits"
+  },
+  {
+   "fieldname": "sms_rate_limit",
+   "fieldtype": "Int",
+   "label": "SMS Rate Limit (per hour)",
+   "default": 100
+  },
+  {
+   "fieldname": "whatsapp_rate_limit",
+   "fieldtype": "Int",
+   "label": "WhatsApp Rate Limit (per hour)",
+   "default": 50
+  },
+  {
+   "fieldname": "otp_rate_limit",
+   "fieldtype": "Int",
+   "label": "OTP Rate Limit (per hour)",
+   "default": 20
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "log_retention_days",
+   "fieldtype": "Int",
+   "label": "Log Retention (days)",
+   "default": 90
+  },
+  {
+   "fieldname": "webhook_settings_section",
+   "fieldtype": "Section Break",
+   "label": "Webhook Settings"
+  },
+  {
+   "fieldname": "enable_webhooks",
+   "fieldtype": "Check",
+   "label": "Enable Webhooks",
+   "default": 1
+  },
+  {
+   "fieldname": "webhook_secret",
+   "fieldtype": "Password",
+   "label": "Webhook Secret"
+  },
+  {
+   "fieldname": "column_break_20",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "webhook_url",
+   "fieldtype": "Data",
+   "label": "Webhook URL",
+   "read_only": 1
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FlashChat Integration",
+ "name": "FlashChat Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

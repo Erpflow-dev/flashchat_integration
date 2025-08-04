@@ -1,0 +1,7 @@
+### 7. Updated patches.txt
+
+flashchat_integration.patches.v1_0.setup_custom_fields
+flashchat_integration.patches.v1_0.create_default_templates  
+flashchat_integration.patches.v1_0.create_default_workflows
+flashchat_integration.patches.v1_0.setup_permissions
+

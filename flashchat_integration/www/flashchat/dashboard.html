@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashChat Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/flashchat_integration/css/flashchat.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flashchat-standalone-dashboard">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-comment"></i> FlashChat
+                </a>
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-link" href="/desk">Back to ERPNext</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid mt-4">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Navigation</h5>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <a href="#dashboard" class="list-group-item list-group-item-action active">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                            <a href="#messages" class="list-group-item list-group-item-action">
+                                <i class="fas fa-comments"></i> Messages
+                            </a>
+                            <a href="#campaigns" class="list-group-item list-group-item-action">
+                                <i class="fas fa-bullhorn"></i> Campaigns
+                            </a>
+                            <a href="#templates" class="list-group-item list-group-item-action">
+                                <i class="fas fa-file-alt"></i> Templates
+                            </a>
+                            <a href="#contacts" class="list-group-item list-group-item-action">
+                                <i class="fas fa-address-book"></i> Contacts
+                            </a>
+                            <a href="#settings" class="list-group-item list-group-item-action">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-md-9">
+                    <div id="dashboard-content">
+                        <!-- Content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+    <script src="/assets/flashchat_integration/js/dashboard.js"></script>
+</body>
+</html>

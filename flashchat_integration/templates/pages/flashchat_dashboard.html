@@ -1,0 +1,211 @@
+html
+{% extends "templates/web.html" %}
+
+{% block title %}FlashChat Dashboard{% endblock %}
+
+{% block head_include %}
+<link rel="stylesheet" href="/assets/flashchat_integration/css/flashchat.css">
+<script src="/assets/flashchat_integration/js/dashboard.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container flashchat-dashboard">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    <i class="fa fa-comment"></i> FlashChat Dashboard
+                    <small>Manage your messaging campaigns</small>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row stats-row">
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa fa-comment"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="total-messages">0</h3>
+                    <p>Total Messages</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="delivered-messages">0</h3>
+                    <p>Delivered</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa fa-clock-o"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="pending-messages">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa fa-times-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <h3 id="failed-messages">0</h3>
+                    <p>Failed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Quick Actions</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <button class="btn btn-primary btn-block" onclick="sendQuickMessage()">
+                                <i class="fa fa-paper-plane"></i> Send Quick Message
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-success btn-block" onclick="createCampaign()">
+                                <i class="fa fa-bullhorn"></i> Create Campaign
+                            </button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-info btn-block" onclick="viewReports()">
+                                <i class="fa fa-bar-chart"></i> View Reports
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Messages -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Recent Messages</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="recent-messages-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Recipient</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-messages-body">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Active Campaigns</h4>
+                </div>
+                <div class="card-body">
+                    <div id="active-campaigns">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Message Volume Trend</h4>
+                </div>
+                <div class="card-body">
+                    <canvas id="messageVolumeChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Success Rate</h4> 
+                </div>
+                <div class="card-body">
+                    <canvas id="successRateChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Message Modal -->
+<div class="modal fade" id="quickMessageModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Send Quick Message</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="quickMessageForm">
+                    <div class="form-group">
+                        <label>Message Type</label>
+                        <select class="form-control" id="messageType">
+                            <option value="SMS">SMS</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="OTP">OTP</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="+966501234567">
+                    </div>
+                    <div class="form-group" id="messageGroup">
+                        <label>Message</label>
+                        <textarea class="form-control" id="messageContent" rows="4" placeholder="Enter your message..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+    initializeDashboard();
+});
+</script>
+{% endblock %}

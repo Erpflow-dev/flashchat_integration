@@ -1,0 +1,19 @@
+
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include flashchat_integration *.css
+recursive-include flashchat_integration *.csv
+recursive-include flashchat_integration *.html
+recursive-include flashchat_integration *.ico
+recursive-include flashchat_integration *.js
+recursive-include flashchat_integration *.json
+recursive-include flashchat_integration *.md
+recursive-include flashchat_integration *.png
+recursive-include flashchat_integration *.py
+recursive-include flashchat_integration *.svg
+recursive-include flashchat_integration *.txt
+recursive-exclude flashchat_integration *.pyc

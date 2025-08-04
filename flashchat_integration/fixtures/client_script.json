@@ -1,0 +1,10 @@
+
+[
+  {
+    "doctype": "Client Script",
+    "dt": "Contact",
+    "script_type": "Form",
+    "script": "frappe.ui.form.on('Contact', {\n    refresh: function(frm) {\n        if (frm.doc.mobile_no && !frm.doc.__islocal) {\n            frm.add_custom_button(__('Sync to FlashChat'), function() {\n                frappe.call({\n                    method: 'flashchat_integration.utils.sync_contact_manually',\n                    args: {\n                        contact_name: frm.doc.name\n                    },\n                    callback: function(r) {\n                        if (r.message && r.message.success) {\n                            frappe.msgprint(__('Contact synced successfully'));\n                            frm.reload_doc();\n                        } else {\n                            frappe.msgprint(__('Sync failed: ') + (r.message.error || 'Unknown error'));\n                        }\n                    }\n                });\n            }, __('FlashChat'));\n        }\n        \n        if (frm.doc.flashchat_sync_status) {\n            let color = {\n                'Synced': 'green',\n                'Failed': 'red',\n                'Pending': 'orange'\n            }[frm.doc.flashchat_sync_status] || 'gray';\n            \n            frm.dashboard.add_indicator(__('FlashChat: {0}', [frm.doc.flashchat_sync_status]), color);\n        }\n    }\n});",
+    "enabled": 1
+  }
+]

@@ -1,0 +1,301 @@
+
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:workflow_name",
+ "creation": "2025-01-01 00:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "workflow_name",
+  "workflow_type",
+  "trigger_doctype",
+  "is_active",
+  "column_break_4",
+  "trigger_event",
+  "delay_duration",
+  "delay_unit",
+  "conditions_section",
+  "conditions",
+  "message_section",
+  "message_template",
+  "message_type",
+  "custom_message",
+  "column_break_12",
+  "recipient_field",
+  "fallback_recipient",
+  "send_to_multiple",
+  "statistics_section",
+  "execution_count",
+  "success_count",
+  "failure_count",
+  "column_break_18",
+  "last_executed",
+  "average_success_rate",
+  "settings_section",
+  "retry_attempts",
+  "retry_delay",
+  "enable_logging",
+  "column_break_23",
+  "rate_limit_check",
+  "working_hours_only",
+  "respect_dnd"
+ ],
+ "fields": [
+  {
+   "fieldname": "workflow_name",
+   "fieldtype": "Data",
+   "label": "Workflow Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "workflow_type",
+   "fieldtype": "Select",
+   "label": "Workflow Type",
+   "options": "Event Based\nScheduled\nManual\nAPI Triggered",
+   "default": "Event Based",
+   "reqd": 1
+  },
+  {
+   "fieldname": "trigger_doctype",
+   "fieldtype": "Link",
+   "label": "Trigger DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active",
+   "default": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "trigger_event",
+   "fieldtype": "Select",
+   "label": "Trigger Event",
+   "options": "before_insert\nafter_insert\nbefore_save\nafter_save\nbefore_submit\nafter_submit\nbefore_cancel\nafter_cancel\non_update\non_trash",
+   "depends_on": "eval:doc.workflow_type == 'Event Based'"
+  },
+  {
+   "fieldname": "delay_duration",
+   "fieldtype": "Int",
+   "label": "Delay Duration",
+   "default": 0,
+   "description": "Delay before sending message"
+  },
+  {
+   "fieldname": "delay_unit",
+   "fieldtype": "Select",
+   "label": "Delay Unit",
+   "options": "Minutes\nHours\nDays",
+   "default": "Minutes",
+   "depends_on": "eval:doc.delay_duration > 0"
+  },
+  {
+   "fieldname": "conditions_section",
+   "fieldtype": "Section Break",
+   "label": "Conditions"
+  },
+  {
+   "fieldname": "conditions",
+   "fieldtype": "Code",
+   "label": "Conditions (Python)",
+   "options": "Python",
+   "description": "Python code that returns True/False. Use 'doc' variable to access document."
+  },
+  {
+   "fieldname": "message_section",
+   "fieldtype": "Section Break",
+   "label": "Message Configuration"
+  },
+  {
+   "fieldname": "message_template",
+   "fieldtype": "Link",
+   "label": "Message Template",
+   "options": "Message Template"
+  },
+  {
+   "fieldname": "message_type",
+   "fieldtype": "Select",
+   "label": "Message Type",
+   "options": "SMS\nWhatsApp\nOTP",
+   "default": "SMS",
+   "reqd": 1
+  },
+  {
+   "fieldname": "custom_message",
+   "fieldtype": "Text",
+   "label": "Custom Message",
+   "description": "Use {field_name} for dynamic values. Example: Hello {customer_name}",
+   "depends_on": "eval:!doc.message_template"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "recipient_field",
+   "fieldtype": "Data",
+   "label": "Recipient Field",
+   "description": "Field name containing phone number (e.g., mobile_no, contact_mobile)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fallback_recipient",
+   "fieldtype": "Data",
+   "label": "Fallback Recipient",
+   "description": "Phone number to use if recipient field is empty"
+  },
+  {
+   "fieldname": "send_to_multiple",
+   "fieldtype": "Check",
+   "label": "Send to Multiple Recipients",
+   "description": "If recipient field contains multiple phone numbers"
+  },
+  {
+   "fieldname": "statistics_section",
+   "fieldtype": "Section Break",
+   "label": "Statistics"
+  },
+  {
+   "fieldname": "execution_count",
+   "fieldtype": "Int",
+   "label": "Execution Count",
+   "read_only": 1,
+   "default": 0
+  },
+  {
+   "fieldname": "success_count",
+   "fieldtype": "Int",
+   "label": "Success Count",
+   "read_only": 1,
+   "default": 0
+  },
+  {
+   "fieldname": "failure_count",
+   "fieldtype": "Int",
+   "label": "Failure Count",
+   "read_only": 1,
+   "default": 0
+  },
+  {
+   "fieldname": "column_break_18",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_executed",
+   "fieldtype": "Datetime",
+   "label": "Last Executed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "average_success_rate",
+   "fieldtype": "Percent",
+   "label": "Success Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "settings_section",
+   "fieldtype": "Section Break",
+   "label": "Advanced Settings"
+  },
+  {
+   "fieldname": "retry_attempts",
+   "fieldtype": "Int",
+   "label": "Retry Attempts",
+   "default": 3,
+   "description": "Number of retry attempts on failure"
+  },
+  {
+   "fieldname": "retry_delay",
+   "fieldtype": "Int",
+   "label": "Retry Delay (Minutes)",
+   "default": 5,
+   "description": "Delay between retry attempts"
+  },
+  {
+   "fieldname": "enable_logging",
+   "fieldtype": "Check",
+   "label": "Enable Detailed Logging",
+   "default": 1
+  },
+  {
+   "fieldname": "column_break_23",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rate_limit_check",
+   "fieldtype": "Check",
+   "label": "Check Rate Limits",
+   "default": 1,
+   "description": "Respect API rate limits before sending"
+  },
+  {
+   "fieldname": "working_hours_only",
+   "fieldtype": "Check",
+   "label": "Working Hours Only",
+   "description": "Send messages only during business hours"
+  },
+  {
+   "fieldname": "respect_dnd",
+   "fieldtype": "Check",
+   "label": "Respect Do Not Disturb",
+   "default": 1,
+   "description": "Skip sending if customer has DND enabled"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FlashChat Integration",
+ "name": "FlashChat Workflow",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "workflow_name",
+ "track_changes": 1
+}

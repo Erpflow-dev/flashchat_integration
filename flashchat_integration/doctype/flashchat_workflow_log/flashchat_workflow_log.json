@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-01 00:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "workflow",
+  "execution_time",
+  "status",
+  "column_break_4",
+  "trigger_document",
+  "trigger_name",
+  "message_type",
+  "details_section",
+  "details",
+  "error_traceback"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FCW-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow",
+   "fieldtype": "Link",
+   "label": "Workflow",
+   "options": "FlashChat Workflow",
+   "reqd": 1
+  },
+  {
+   "fieldname": "execution_time",
+   "fieldtype": "Datetime",
+   "label": "Execution Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Success\nFailed\nPartial",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "trigger_document",
+   "fieldtype": "Data",
+   "label": "Trigger Document",
+   "reqd": 1
+  },
+  {
+   "fieldname": "trigger_name",
+   "fieldtype": "Data",
+   "label": "Trigger Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "message_type",
+   "fieldtype": "Select",
+   "label": "Message Type",
+   "options": "SMS\nWhatsApp\nOTP"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "error_traceback",
+   "fieldtype": "Code",
+   "label": "Error Traceback",
+   "options": "Text",
+   "depends_on": "eval:doc.status == 'Failed'"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FlashChat Integration",
+ "name": "FlashChat Workflow Log",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

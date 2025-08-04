@@ -1,0 +1,2882 @@
+/* FlashChat Integration - Complete Enhanced Styles */
+
+/* ==========================================================================
+   CSS Variables and Root Configuration
+   ========================================================================== */
+
+:root {
+    /* Primary Colors */
+    --flashchat-primary: #667eea;
+    --flashchat-primary-dark: #5a6fd8;
+    --flashchat-primary-light: #7c94ed;
+    --flashchat-secondary: #764ba2;
+    --flashchat-secondary-dark: #6a4190;
+    --flashchat-secondary-light: #8659b5;
+    
+    /* Status Colors */
+    --flashchat-success: #28a745;
+    --flashchat-success-light: #d4edda;
+    --flashchat-danger: #dc3545;
+    --flashchat-danger-light: #f8d7da;
+    --flashchat-warning: #ffc107;
+    --flashchat-warning-light: #fff3cd;
+    --flashchat-info: #17a2b8;
+    --flashchat-info-light: #d1ecf1;
+    
+    /* Neutral Colors */
+    --flashchat-light: #f8f9fa;
+    --flashchat-dark: #343a40;
+    --flashchat-muted: #6c757d;
+    --flashchat-border: #e9ecef;
+    --flashchat-background: #ffffff;
+    
+    /* Gradients */
+    --flashchat-gradient: linear-gradient(135deg, var(--flashchat-primary) 0%, var(--flashchat-secondary) 100%);
+    --flashchat-gradient-light: linear-gradient(135deg, var(--flashchat-primary-light) 0%, var(--flashchat-secondary-light) 100%);
+    --flashchat-gradient-dark: linear-gradient(135deg, var(--flashchat-primary-dark) 0%, var(--flashchat-secondary-dark) 100%);
+    
+    /* Shadows */
+    --flashchat-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --flashchat-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --flashchat-shadow-active: 0 8px 25px rgba(0, 0, 0, 0.2);
+    
+    /* Border Radius */
+    --flashchat-border-radius: 8px;
+    --flashchat-border-radius-sm: 4px;
+    --flashchat-border-radius-lg: 12px;
+    
+    /* Transitions */
+    --flashchat-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --flashchat-transition-fast: all 0.15s ease-in-out;
+    --flashchat-transition-slow: all 0.5s ease-in-out;
+    
+    /* Typography */
+    --flashchat-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --flashchat-font-size-xs: 11px;
+    --flashchat-font-size-sm: 12px;
+    --flashchat-font-size-base: 14px;
+    --flashchat-font-size-lg: 16px;
+    --flashchat-font-size-xl: 18px;
+    
+    /* Spacing */
+    --flashchat-spacing-xs: 4px;
+    --flashchat-spacing-sm: 8px;
+    --flashchat-spacing-md: 16px;
+    --flashchat-spacing-lg: 24px;
+    --flashchat-spacing-xl: 32px;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --flashchat-light: #2d3748;
+    --flashchat-dark: #f7fafc;
+    --flashchat-background: #1a202c;
+    --flashchat-border: #4a5568;
+    --flashchat-muted: #a0aec0;
+}
+
+/* ==========================================================================
+   Base Widget Styles
+   ========================================================================== */
+
+.flashchat-widget {
+    background: var(--flashchat-background);
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    margin-bottom: var(--flashchat-spacing-lg);
+    box-shadow: var(--flashchat-shadow);
+    transition: var(--flashchat-transition);
+    overflow: hidden;
+    font-family: var(--flashchat-font-family);
+    position: relative;
+}
+
+.flashchat-widget::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--flashchat-gradient);
+    z-index: 1;
+}
+
+.flashchat-widget:hover {
+    box-shadow: var(--flashchat-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.flashchat-widget.widget-hover {
+    transform: translateY(-4px);
+    box-shadow: var(--flashchat-shadow-active);
+}
+
+/* Widget Header */
+.flashchat-widget .widget-head {
+    background: var(--flashchat-gradient);
+    color: white;
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: none;
+    position: relative;
+    z-index: 2;
+}
+
+.flashchat-widget .widget-title {
+    display: flex;
+    align-items: center;
+    gap: var(--flashchat-spacing-sm);
+    flex-grow: 1;
+}
+
+.flashchat-widget .widget-title h4 {
+    margin: 0;
+    font-size: var(--flashchat-font-size-lg);
+    font-weight: 600;
+    color: white;
+}
+
+.flashchat-widget .widget-title i {
+    font-size: var(--flashchat-font-size-xl);
+}
+
+.flashchat-widget .widget-actions {
+    display: flex;
+    gap: var(--flashchat-spacing-xs);
+    align-items: center;
+}
+
+.flashchat-widget .widget-actions .btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: var(--flashchat-font-size-xs);
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: var(--flashchat-transition-fast);
+    backdrop-filter: blur(10px);
+}
+
+.flashchat-widget .widget-actions .btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.flashchat-widget .widget-actions .btn:active {
+    transform: translateY(0);
+}
+
+/* Widget Body */
+.flashchat-widget .widget-body {
+    padding: var(--flashchat-spacing-lg);
+    background: var(--flashchat-background);
+}
+
+/* ==========================================================================
+   Statistics Grid
+   ========================================================================== */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--flashchat-spacing-md);
+    margin-bottom: var(--flashchat-spacing-lg);
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--flashchat-spacing-md);
+    border-radius: var(--flashchat-border-radius);
+    background: var(--flashchat-light);
+    transition: var(--flashchat-transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--flashchat-gradient);
+    transform: scaleX(0);
+    transition: var(--flashchat-transition);
+}
+
+.stat-item:hover {
+    background: var(--flashchat-background);
+    transform: translateY(-3px);
+    box-shadow: var(--flashchat-shadow);
+    border-color: var(--flashchat-border);
+}
+
+.stat-item:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--flashchat-dark);
+    margin-bottom: var(--flashchat-spacing-sm);
+    background: var(--flashchat-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    transition: var(--flashchat-transition);
+}
+
+.stat-number.success {
+    color: var(--flashchat-success);
+    -webkit-text-fill-color: var(--flashchat-success);
+}
+
+.stat-number.info {
+    color: var(--flashchat-info);
+    -webkit-text-fill-color: var(--flashchat-info);
+}
+
+.stat-number.danger {
+    color: var(--flashchat-danger);
+    -webkit-text-fill-color: var(--flashchat-danger);
+}
+
+.stat-number.warning {
+    color: var(--flashchat-warning);
+    -webkit-text-fill-color: var(--flashchat-warning);
+}
+
+.stat-label {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--flashchat-spacing-xs);
+}
+
+.stat-trend {
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 600;
+    margin-top: var(--flashchat-spacing-xs);
+}
+
+.stat-trend.positive {
+    color: var(--flashchat-success);
+}
+
+.stat-trend.negative {
+    color: var(--flashchat-danger);
+}
+
+.stat-trend i {
+    margin-right: 2px;
+}
+
+/* ==========================================================================
+   Success Rate Section
+   ========================================================================== */
+
+.success-rate-section {
+    margin-top: var(--flashchat-spacing-lg);
+    padding: var(--flashchat-spacing-md);
+    background: var(--flashchat-light);
+    border-radius: var(--flashchat-border-radius);
+    border: 1px solid var(--flashchat-border);
+}
+
+.success-rate-bar .progress {
+    height: 8px;
+    border-radius: var(--flashchat-border-radius-sm);
+    background-color: var(--flashchat-border);
+    overflow: hidden;
+    margin-bottom: var(--flashchat-spacing-sm);
+}
+
+.success-rate-bar .progress-bar {
+    background: var(--flashchat-gradient);
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.success-rate-bar .progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: progress-shine 2s infinite;
+}
+
+@keyframes progress-shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.success-rate-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--flashchat-font-size-sm);
+}
+
+.success-rate-text .rate-label {
+    color: var(--flashchat-muted);
+    font-weight: 500;
+}
+
+.success-rate-text .rate-value {
+    color: var(--flashchat-dark);
+    font-weight: 700;
+    font-size: var(--flashchat-font-size-base);
+}
+
+.success-rate-text .rate-count {
+    color: var(--flashchat-muted);
+    font-size: var(--flashchat-font-size-xs);
+}
+
+/* ==========================================================================
+   Recent Campaigns Section
+   ========================================================================== */
+
+.recent-campaigns {
+    margin-top: var(--flashchat-spacing-lg);
+    padding: var(--flashchat-spacing-md);
+    background: var(--flashchat-light);
+    border-radius: var(--flashchat-border-radius);
+    border: 1px solid var(--flashchat-border);
+}
+
+.recent-campaigns h6 {
+    margin: 0 0 var(--flashchat-spacing-md) 0;
+    color: var(--flashchat-dark);
+    font-size: var(--flashchat-font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.recent-campaigns h6 i {
+    color: var(--flashchat-primary);
+    margin-right: var(--flashchat-spacing-xs);
+}
+
+.campaign-item {
+    margin-bottom: var(--flashchat-spacing-sm);
+    padding: var(--flashchat-spacing-sm);
+    background: var(--flashchat-background);
+    border-radius: var(--flashchat-border-radius-sm);
+    border: 1px solid var(--flashchat-border);
+    transition: var(--flashchat-transition);
+}
+
+.campaign-item:hover {
+    transform: translateX(2px);
+    box-shadow: var(--flashchat-shadow);
+}
+
+.campaign-item:last-child {
+    margin-bottom: 0;
+}
+
+.campaign-name {
+    font-size: var(--flashchat-font-size-sm);
+    font-weight: 600;
+    color: var(--flashchat-dark);
+    margin-bottom: var(--flashchat-spacing-xs);
+}
+
+.campaign-progress .progress {
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--flashchat-border);
+    margin-bottom: var(--flashchat-spacing-xs);
+}
+
+.campaign-progress .progress-bar {
+    background: var(--flashchat-gradient);
+    border-radius: 2px;
+}
+
+.campaign-progress small {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+}
+
+/* ==========================================================================
+   Widget Actions Bar
+   ========================================================================== */
+
+.widget-actions-bar {
+    border-top: 1px solid var(--flashchat-border);
+    padding-top: var(--flashchat-spacing-md);
+    margin-top: var(--flashchat-spacing-lg);
+}
+
+.widget-actions-bar .btn {
+    font-size: var(--flashchat-font-size-xs);
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: var(--flashchat-transition);
+}
+
+.widget-actions-bar .btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Widget Footer */
+.widget-footer {
+    border-top: 1px solid var(--flashchat-border);
+    padding-top: var(--flashchat-spacing-sm);
+    margin-top: var(--flashchat-spacing-md);
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.widget-footer input[type="checkbox"] {
+    margin-right: var(--flashchat-spacing-xs);
+}
+
+/* ==========================================================================
+   Notification Badge
+   ========================================================================== */
+
+#flashchat-notification-badge {
+    background: var(--flashchat-danger);
+    color: white;
+    font-size: var(--flashchat-font-size-xs);
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: var(--flashchat-spacing-xs);
+    animation: none;
+}
+
+#flashchat-notification-badge.pulse {
+    animation: flashchat-pulse 2s infinite;
+}
+
+@keyframes flashchat-pulse {
+    0% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Loading States
+   ========================================================================== */
+
+.loading-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--flashchat-spacing-lg);
+    color: var(--flashchat-muted);
+    font-size: var(--flashchat-font-size-sm);
+}
+
+.loading-indicator i {
+    margin-right: var(--flashchat-spacing-sm);
+    color: var(--flashchat-primary);
+}
+
+.fa-spin {
+    animation: fa-spin 1s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Dashboard Page Styles
+   ========================================================================== */
+
+.flashchat-dashboard {
+    padding: var(--flashchat-spacing-xl) 0;
+    background: var(--flashchat-light);
+    min-height: 100vh;
+}
+
+.flashchat-dashboard .page-header {
+    margin-bottom: var(--flashchat-spacing-xl);
+    padding-bottom: var(--flashchat-spacing-lg);
+    border-bottom: 2px solid var(--flashchat-border);
+    background: var(--flashchat-background);
+    padding: var(--flashchat-spacing-xl);
+    border-radius: var(--flashchat-border-radius);
+    box-shadow: var(--flashchat-shadow);
+}
+
+.flashchat-dashboard .page-header h1 {
+    color: var(--flashchat-dark);
+    font-weight: 300;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--flashchat-spacing-md);
+}
+
+.flashchat-dashboard .page-header h1 i {
+    color: var(--flashchat-primary);
+    background: var(--flashchat-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.flashchat-dashboard .page-header small {
+    color: var(--flashchat-muted);
+    font-weight: 400;
+    margin-left: var(--flashchat-spacing-sm);
+}
+
+/* Stats Row */
+.stats-row {
+    margin-bottom: var(--flashchat-spacing-xl);
+}
+
+.stat-card {
+    background: var(--flashchat-background);
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-xl);
+    box-shadow: var(--flashchat-shadow);
+    transition: var(--flashchat-transition);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--flashchat-border);
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--flashchat-gradient);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--flashchat-shadow-active);
+}
+
+.stat-card .stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--flashchat-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--flashchat-spacing-lg);
+    box-shadow: var(--flashchat-shadow);
+}
+
+.stat-card .stat-icon i {
+    font-size: 24px;
+    color: white;
+}
+
+.stat-card .stat-content h3 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--flashchat-dark);
+    line-height: 1;
+}
+
+.stat-card .stat-content p {
+    margin: var(--flashchat-spacing-xs) 0 0 0;
+    color: var(--flashchat-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: var(--flashchat-font-size-sm);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Card Components
+   ========================================================================== */
+
+.card {
+    background: var(--flashchat-background);
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    box-shadow: var(--flashchat-shadow);
+    margin-bottom: var(--flashchat-spacing-lg);
+    transition: var(--flashchat-transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--flashchat-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: var(--flashchat-light);
+    border-bottom: 1px solid var(--flashchat-border);
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    border-radius: var(--flashchat-border-radius) var(--flashchat-border-radius) 0 0;
+}
+
+.card-header h4 {
+    margin: 0;
+    color: var(--flashchat-dark);
+    font-weight: 600;
+    font-size: var(--flashchat-font-size-lg);
+}
+
+.card-body {
+    padding: var(--flashchat-spacing-lg);
+}
+
+/* ==========================================================================
+   Badge and Status Indicators
+   ========================================================================== */
+
+.badge {
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 500;
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: var(--flashchat-border-radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success {
+    background-color: var(--flashchat-success);
+    color: white;
+}
+
+.badge-danger {
+    background-color: var(--flashchat-danger);
+    color: white;
+}
+
+.badge-warning {
+    background-color: var(--flashchat-warning);
+    color: var(--flashchat-dark);
+}
+
+.badge-info {
+    background-color: var(--flashchat-info);
+    color: white;
+}
+
+.badge-secondary {
+    background-color: var(--flashchat-muted);
+    color: white;
+}
+
+.indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--flashchat-spacing-xs);
+}
+
+.indicator.green {
+    background-color: var(--flashchat-success);
+}
+
+.indicator.red {
+    background-color: var(--flashchat-danger);
+}
+
+.indicator.orange {
+    background-color: var(--flashchat-warning);
+}
+
+.indicator.blue {
+    background-color: var(--flashchat-info);
+}
+
+.indicator.gray {
+    background-color: var(--flashchat-muted);
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+.btn {
+    font-family: var(--flashchat-font-family);
+    font-weight: 500;
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: var(--flashchat-transition);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--flashchat-transition);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--flashchat-gradient);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--flashchat-gradient-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--flashchat-shadow);
+    color: white;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background-color: var(--flashchat-success);
+    border-color: var(--flashchat-success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--flashchat-danger);
+    border-color: var(--flashchat-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+.btn-info {
+    background-color: var(--flashchat-info);
+    border-color: var(--flashchat-info);
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: white;
+}
+
+.btn-default,
+.btn-secondary {
+    background-color: var(--flashchat-light);
+    border-color: var(--flashchat-border);
+    color: var(--flashchat-dark);
+}
+
+.btn-default:hover,
+.btn-secondary:hover {
+    background-color: var(--flashchat-border);
+    border-color: var(--flashchat-muted);
+    color: var(--flashchat-dark);
+}
+
+.btn-block {
+    width: 100%;
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--flashchat-border-radius);
+}
+
+.btn-sm {
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    font-size: var(--flashchat-font-size-xs);
+}
+
+.btn-xs {
+    padding: 2px var(--flashchat-spacing-xs);
+    font-size: var(--flashchat-font-size-xs);
+}
+
+/* ==========================================================================
+   Modal Styles
+   ========================================================================== */
+
+.modal-content {
+    border-radius: var(--flashchat-border-radius);
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: var(--flashchat-gradient);
+    color: white;
+    border-radius: var(--flashchat-border-radius) var(--flashchat-border-radius) 0 0;
+    border-bottom: none;
+    padding: var(--flashchat-spacing-lg);
+}
+
+.modal-header .modal-title {
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-header .close {
+    color: white;
+    opacity: 0.8;
+    text-shadow: none;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+    color: white;
+}
+
+.modal-body {
+    padding: var(--flashchat-spacing-lg);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--flashchat-border);
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    background: var(--flashchat-light);
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
+.form-control {
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius-sm);
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    transition: var(--flashchat-transition);
+    font-size: var(--flashchat-font-size-sm);
+    font-family: var(--flashchat-font-family);
+}
+
+.form-control:focus {
+    border-color: var(--flashchat-primary);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: var(--flashchat-spacing-md);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--flashchat-dark);
+    margin-bottom: var(--flashchat-spacing-xs);
+    font-size: var(--flashchat-font-size-sm);
+}
+
+.form-group .description {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    margin-top: var(--flashchat-spacing-xs);
+}
+
+/* ERPNext Form Integration */
+.frappe-control[data-fieldname*="flashchat"] .control-label {
+    color: var(--flashchat-primary);
+    font-weight: 600;
+}
+
+.frappe-control[data-fieldname*="flashchat"] .form-control {
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.frappe-control[data-fieldname*="flashchat"] .form-control:focus {
+    border-color: var(--flashchat-primary);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* ==========================================================================
+   List View Customizations
+   ========================================================================== */
+
+.list-row[data-doctype*="FlashChat"] {
+    border-left: 4px solid transparent;
+    transition: var(--flashchat-transition);
+}
+
+.list-row[data-doctype*="FlashChat"]:hover {
+    background-color: var(--flashchat-light);
+    border-left-color: var(--flashchat-primary);
+    transform: translateX(2px);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Failed"] {
+    border-left-color: var(--flashchat-danger);
+    background-color: var(--flashchat-danger-light);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Delivered"] {
+    border-left-color: var(--flashchat-success);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Sent"] {
+    border-left-color: var(--flashchat-info);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Completed"] {
+    border-left-color: var(--flashchat-success);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Processing"] {
+    border-left-color: var(--flashchat-warning);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Failed"] {
+    border-left-color: var(--flashchat-danger);
+}
+
+/* ==========================================================================
+   Workflow Styles
+   ========================================================================== */
+
+.workflow-card {
+    background: var(--flashchat-background);
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-lg);
+    margin-bottom: var(--flashchat-spacing-md);
+    box-shadow: var(--flashchat-shadow);
+    transition: var(--flashchat-transition);
+    position: relative;
+}
+
+.workflow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--flashchat-gradient);
+    transform: scaleY(0);
+    transition: var(--flashchat-transition);
+}
+
+.workflow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--flashchat-shadow-hover);
+}
+
+.workflow-card:hover::before {
+    transform: scaleY(1);
+}
+
+.workflow-status {
+    display: inline-block;
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: 12px;
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.workflow-status.active {
+    background-color: var(--flashchat-success-light);
+    color: var(--flashchat-success);
+}
+
+.workflow-status.inactive {
+    background-color: var(--flashchat-danger-light);
+    color: var(--flashchat-danger);
+}
+
+.workflow-metrics {
+    display: flex;
+    gap: var(--flashchat-spacing-lg);
+    margin-top: var(--flashchat-spacing-md);
+    flex-wrap: wrap;
+}
+
+.workflow-metric {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+}
+
+.workflow-metric .metric-value {
+    font-size: var(--flashchat-font-size-xl);
+    font-weight: 700;
+    color: var(--flashchat-primary);
+    display: block;
+}
+
+.workflow-metric .metric-label {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--flashchat-spacing-xs);
+}
+
+/* ==========================================================================
+   Standalone Dashboard Styles
+   ========================================================================== */
+
+.flashchat-standalone-dashboard {
+    min-height: 100vh;
+    background-color: var(--flashchat-light);
+    font-family: var(--flashchat-font-family);
+}
+
+.flashchat-standalone-dashboard .navbar {
+    box-shadow: var(--flashchat-shadow);
+    background: var(--flashchat-gradient) !important;
+}
+
+.flashchat-standalone-dashboard .navbar-brand {
+    font-weight: 600;
+    font-size: var(--flashchat-font-size-xl);
+    color: white !important;
+}
+
+.flashchat-standalone-dashboard .navbar-brand i {
+    margin-right: var(--flashchat-spacing-sm);
+}
+
+.flashchat-standalone-dashboard .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: var(--flashchat-transition);
+}
+
+.flashchat-standalone-dashboard .nav-link:hover {
+    color: white !important;
+}
+
+.flashchat-standalone-dashboard .list-group-item {
+    border: none;
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    transition: var(--flashchat-transition);
+    border-radius: 0;
+    background: transparent;
+}
+
+.flashchat-standalone-dashboard .list-group-item:hover {
+    background-color: var(--flashchat-light);
+    transform: translateX(5px);
+}
+
+.flashchat-standalone-dashboard .list-group-item.active {
+    background: var(--flashchat-gradient);
+    border-color: transparent;
+    color: white;
+}
+
+.flashchat-standalone-dashboard .list-group-item i {
+    margin-right: var(--flashchat-spacing-sm);
+    width: 16px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Message Preview Styles
+   ========================================================================== */
+
+.message-preview {
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-md);
+    background: var(--flashchat-light);
+    margin: var(--flashchat-spacing-md) 0;
+}
+
+.message-header {
+    border-bottom: 1px solid var(--flashchat-border);
+    padding-bottom: var(--flashchat-spacing-sm);
+    margin-bottom: var(--flashchat-spacing-md);
+    font-size: var(--flashchat-font-size-sm);
+    font-weight: 600;
+    color: var(--flashchat-dark);
+}
+
+.message-body {
+    padding: var(--flashchat-spacing-sm) 0;
+    line-height: 1.5;
+    font-size: var(--flashchat-font-size-sm);
+    color: var(--flashchat-dark);
+}
+
+.message-footer {
+    border-top: 1px solid var(--flashchat-border);
+    padding-top: var(--flashchat-spacing-sm);
+    margin-top: var(--flashchat-spacing-md);
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+}
+
+/* ==========================================================================
+   Progress Indicators
+   ========================================================================== */
+
+.progress {
+    height: 6px;
+    border-radius: var(--flashchat-border-radius-sm);
+    background-color: var(--flashchat-border);
+    overflow: hidden;
+}
+
+.progress-sm {
+    height: 4px;
+}
+
+.progress-lg {
+    height: 10px;
+}
+
+.progress-bar {
+    background: var(--flashchat-gradient);
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: width var(--flashchat-transition-slow);
+}
+
+.progress-circular {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: conic-gradient(var(--flashchat-primary) 0deg, var(--flashchat-border) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-circular::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--flashchat-background);
+    position: absolute;
+}
+
+.progress-circular .progress-text {
+    position: relative;
+    z-index: 1;
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 600;
+    color: var(--flashchat-primary);
+}
+
+/* ==========================================================================
+   Alert Styles
+   ========================================================================== */
+
+.alert {
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-md);
+    border: 1px solid;
+    margin-bottom: var(--flashchat-spacing-md);
+}
+
+.alert-success {
+    background-color: var(--flashchat-success-light);
+    border-color: var(--flashchat-success);
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: var(--flashchat-danger-light);
+    border-color: var(--flashchat-danger);
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: var(--flashchat-warning-light);
+    border-color: var(--flashchat-warning);
+    color: #856404;
+}
+
+.alert-info {
+    background-color: var(--flashchat-info-light);
+    border-color: var(--flashchat-info);
+    color: #0c5460;
+}
+
+/* ==========================================================================
+   Tooltip Styles
+   ========================================================================== */
+
+.flashchat-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.flashchat-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    border-radius: var(--flashchat-border-radius-sm);
+    font-size: var(--flashchat-font-size-xs);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--flashchat-transition);
+    z-index: 1000;
+}
+
+.flashchat-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* ==========================================================================
+   Character Counter
+   ========================================================================== */
+
+.character-counter {
+    text-align: right;
+    font-size: var(--flashchat-font-size-xs);
+    margin-top: var(--flashchat-spacing-xs);
+    transition: var(--flashchat-transition);
+}
+
+.character-counter.text-muted {
+    color: var(--flashchat-muted);
+}
+
+.character-counter.text-warning {
+    color: var(--flashchat-warning);
+}
+
+.character-counter.text-danger {
+    color: var(--flashchat-danger);
+}
+
+/* ==========================================================================
+   Custom Scrollbar
+   ========================================================================== */
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--flashchat-light);
+    border-radius: var(--flashchat-border-radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--flashchat-muted);
+    border-radius: var(--flashchat-border-radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--flashchat-dark);
+}
+
+/* ==========================================================================
+   Animation Classes
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.4s ease-out;
+}
+
+/* ==========================================================================
+   Theme Variations
+   ========================================================================== */
+
+.flashchat-theme-blue {
+    --flashchat-primary: #007bff;
+    --flashchat-secondary: #6c757d;
+    --flashchat-gradient: linear-gradient(135deg, #007bff 0%, #6c757d 100%);
+}
+
+.flashchat-theme-green {
+    --flashchat-primary: #28a745;
+    --flashchat-secondary: #20c997;
+    --flashchat-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.flashchat-theme-purple {
+    --flashchat-primary: #6f42c1;
+    --flashchat-secondary: #e83e8c;
+    --flashchat-gradient: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+}
+
+.flashchat-theme-orange {
+    --flashchat-primary: #fd7e14;
+    --flashchat-secondary: #ffc107;
+    --flashchat-gradient: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+}
+
+/* ==========================================================================
+   Mobile Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --flashchat-spacing-xs: 3px;
+        --flashchat-spacing-sm: 6px;
+        --flashchat-spacing-md: 12px;
+        --flashchat-spacing-lg: 18px;
+        --flashchat-spacing-xl: 24px;
+    }
+    
+    .flashchat-widget .widget-head {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-sm);
+        text-align: center;
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .flashchat-widget .widget-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .stat-card .stat-icon {
+        margin-right: 0;
+        margin-bottom: var(--flashchat-spacing-md);
+    }
+    
+    .stat-card .stat-content h3 {
+        font-size: 28px;
+    }
+    
+    .workflow-metrics {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .campaign-item {
+        padding: var(--flashchat-spacing-sm);
+    }
+    
+    .modal-dialog {
+        margin: var(--flashchat-spacing-sm);
+    }
+    
+    .card-body {
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .table-responsive {
+        font-size: var(--flashchat-font-size-xs);
+    }
+    
+    .widget-actions-bar .btn {
+        font-size: var(--flashchat-font-size-xs);
+        padding: var(--flashchat-spacing-xs);
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .flashchat-dashboard {
+        padding: var(--flashchat-spacing-md) 0;
+    }
+    
+    .flashchat-dashboard .page-header {
+        margin-bottom: var(--flashchat-spacing-lg);
+        padding: var(--flashchat-spacing-lg);
+    }
+    
+    .flashchat-dashboard .page-header h1 {
+        font-size: 24px;
+        flex-direction: column;
+        text-align: center;
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .stat-card .stat-content h3 {
+        font-size: 24px;
+    }
+    
+    .card-header {
+        padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    }
+    
+    .card-body {
+        padding: var(--flashchat-spacing-sm);
+    }
+    
+    .modal-body {
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .success-rate-text {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-xs);
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .flashchat-widget .widget-actions,
+    .btn,
+    .modal,
+    .navbar,
+    .widget-footer {
+        display: none !important;
+    }
+    
+    .flashchat-widget {
+        box-shadow: none;
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
+    
+    .flashchat-widget .widget-head {
+        background: #000 !important;
+        color: #fff !important;
+    }
+    
+    .stat-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    .stats-grid {
+        display: block;
+    }
+    
+    .stat-item {
+        display: inline-block;
+        width: 23%;
+        margin: 1%;
+    }
+}
+
+/* ==========================================================================
+   Accessibility Features
+   ========================================================================== */
+
+/* Focus styles for keyboard navigation */
+.btn:focus,
+.form-control:focus,
+.list-group-item:focus {
+    outline: 2px solid var(--flashchat-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .flashchat-widget {
+        border: 2px solid #000;
+    }
+    
+    .btn-primary {
+        background: #000;
+        border: 2px solid #000;
+    }
+    
+    .btn-primary:hover {
+        background: #333;
+        border-color: #333;
+    }
+    
+    .stat-number {
+        color: #000;
+        -webkit-text-fill-color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .fa-spin {
+        animation: none;
+    }
+    
+    .loading-indicator i {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --flashchat-light: #2d3748;
+        --flashchat-dark: #f7fafc;
+        --flashchat-background: #1a202c;
+        --flashchat-border: #4a5568;
+        --flashchat-muted: #a0aec0;
+    }
+    
+    .flashchat-widget {
+        background: var(--flashchat-background);
+        color: var(--flashchat-dark);
+    }
+    
+    .stat-item {
+        background: #2d3748;
+    }
+    
+    .card {
+        background: var(--flashchat-background);
+        color: var(--flashchat-dark);
+    }
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+.text-primary { color: var(--flashchat-primary) !important; }
+.text-success { color: var(--flashchat-success) !important; }
+.text-danger { color: var(--flashchat-danger) !important; }
+.text-warning { color: var(--flashchat-warning) !important; }
+.text-info { color: var(--flashchat-info) !important; }
+.text-muted { color: var(--flashchat-muted) !important; }
+.text-dark { color: var(--flashchat-dark) !important; }
+
+.bg-primary { background-color: var(--flashchat-primary) !important; }
+.bg-success { background-color: var(--flashchat-success) !important; }
+.bg-danger { background-color: var(--flashchat-danger) !important; }
+.bg-warning { background-color: var(--flashchat-warning) !important; }
+.bg-info { background-color: var(--flashchat-info) !important; }
+.bg-light { background-color: var(--flashchat-light) !important; }
+.bg-dark { background-color: var(--flashchat-dark) !important; }
+
+.border-danger { border-color: var(--flashchat-danger) !important; }
+.border-warning { border-color: var(--flashchat-warning) !important; }
+.border-info { border-color: var(--flashchat-info) !important; }
+
+.shadow-sm { box-shadow: var(--flashchat-shadow) !important; }
+.shadow { box-shadow: var(--flashchat-shadow-hover) !important; }
+.shadow-lg { box-shadow: var(--flashchat-shadow-active) !important; }
+
+.rounded { border-radius: var(--flashchat-border-radius) !important; }
+.rounded-sm { border-radius: var(--flashchat-border-radius-sm) !important; }
+.rounded-lg { border-radius: var(--flashchat-border-radius-lg) !important; }
+
+.p-0 { padding: 0 !important; }
+.p-1 { padding: var(--flashchat-spacing-xs) !important; }
+.p-2 { padding: var(--flashchat-spacing-sm) !important; }
+.p-3 { padding: var(--flashchat-spacing-md) !important; }
+.p-4 { padding: var(--flashchat-spacing-lg) !important; }
+.p-5 { padding: var(--flashchat-spacing-xl) !important; }
+
+.m-0 { margin: 0 !important; }
+.m-1 { margin: var(--flashchat-spacing-xs) !important; }
+.m-2 { margin: var(--flashchat-spacing-sm) !important; }
+.m-3 { margin: var(--flashchat-spacing-md) !important; }
+.m-4 { margin: var(--flashchat-spacing-lg) !important; }
+.m-5 { margin: var(--flashchat-spacing-xl) !important; }
+
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1 { margin-bottom: var(--flashchat-spacing-xs) !important; }
+.mb-2 { margin-bottom: var(--flashchat-spacing-sm) !important; }
+.mb-3 { margin-bottom: var(--flashchat-spacing-md) !important; }
+.mb-4 { margin-bottom: var(--flashchat-spacing-lg) !important; }
+.mb-5 { margin-bottom: var(--flashchat-spacing-xl) !important; }
+
+.mt-0 { margin-top: 0 !important; }
+.mt-1 { margin-top: var(--flashchat-spacing-xs) !important; }
+.mt-2 { margin-top: var(--flashchat-spacing-sm) !important; }
+.mt-3 { margin-top: var(--flashchat-spacing-md) !important; }
+.mt-4 { margin-top: var(--flashchat-spacing-lg) !important; }
+.mt-5 { margin-top: var(--flashchat-spacing-xl) !important; }
+
+.font-weight-bold { font-weight: 700 !important; }
+.font-weight-normal { font-weight: 400 !important; }
+.font-weight-light { font-weight: 300 !important; }
+
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+
+.flex-column { flex-direction: column !important; }
+.flex-row { flex-direction: row !important; }
+.justify-content-center { justify-content: center !important; }
+.justify-content-between { justify-content: space-between !important; }
+.align-items-center { align-items: center !important; }
+
+.w-100 { width: 100% !important; }
+.h-100 { height: 100% !important; }
+
+.cursor-pointer { cursor: pointer !important; }
+.cursor-default { cursor: default !important; }
+
+.overflow-hidden { overflow: hidden !important; }
+.overflow-auto { overflow: auto !important; }
+
+.position-relative { position: relative !important; }
+.position-absolute { position: absolute !important; }
+
+.z-index-1 { z-index: 1 !important; }
+.z-index-2 { z-index: 2 !important; }
+.z-index-3 { z-index: 3 !important; }
+
+/* ==========================================================================
+   Component-Specific Utility Classes
+   ========================================================================== */
+
+.flashchat-gradient-text {
+    background: var(--flashchat-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.flashchat-gradient-bg {
+    background: var(--flashchat-gradient);
+}
+
+.flashchat-hover-lift:hover {
+    transform: translateY(-2px);
+    transition: var(--flashchat-transition);
+}
+
+.flashchat-hover-scale:hover {
+    transform: scale(1.05);
+    transition: var(--flashchat-transition);
+}
+
+.flashchat-border-gradient {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box, var(--flashchat-gradient) border-box;
+}
+
+.flashchat-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flashchat-pulse {
+    animation: flashchat-pulse 2s infinite;
+}
+
+.flashchat-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.flashchat-slideInUp {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ==========================================================================
+   Custom Properties for Dynamic Theming
+   ========================================================================== */
+
+.flashchat-custom-theme {
+    /* Override these custom properties to create your own theme */
+    --custom-primary: var(--flashchat-primary);
+    --custom-secondary: var(--flashchat-secondary);
+    --custom-gradient: var(--flashchat-gradient);
+}
+
+.flashchat-custom-theme .flashchat-widget .widget-head {
+    background: var(--custom-gradient);
+}
+
+.flashchat-custom-theme .btn-primary {
+    background: var(--custom-gradient);
+}
+
+.flashchat-custom-theme .stat-number {
+    background: var(--custom-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==========================================================================
+   Performance Optimizations
+   ========================================================================== */
+
+/* GPU acceleration for animations */
+.flashchat-widget,
+.stat-item,
+.campaign-item,
+.workflow-card,
+.btn {
+    will-change: transform;
+}
+
+/* Optimize for 60fps animations */
+@keyframes optimized-pulse {
+    0%, 100% {
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        transform: scale3d(1.05, 1.05, 1);
+    }
+}
+
+.flashchat-pulse-optimized {
+    animation: optimized-pulse 2s infinite;
+}
+
+
+
+/* ==========================================================================
+   End of FlashChat CSS
+   ========================================================================== */
+
+/* CSS Custom Properties Documentation:
+   
+   Primary Colors:
+   --flashchat-primary: Main brand color
+   --flashchat-secondary: Secondary brand color
+   
+   Status Colors:
+   --flashchat-success: Success state color
+   --flashchat-danger: Error state color  
+   --flashchat-warning: Warning state color
+   --flashchat-info: Information state color
+   
+   Layout:
+   --flashchat-border-radius: Default border radius
+   --flashchat-shadow: Default box shadow
+   --flashchat-transition: Default transition
+   
+   Spacing:
+   --flashchat-spacing-xs: Extra small spacing (4px)
+   --flashchat-spacing-sm: Small spacing (8px)
+   --flashchat-spacing-md: Medium spacing (16px)
+   --flashchat-spacing-lg: Large spacing (24px)
+   --flashchat-spacing-xl: Extra large spacing (32px)
+   
+   Typography:
+   --flashchat-font-family: Main font family
+   --flashchat-font-size-xs: Extra small font size (11px)
+   --flashchat-font-size-sm: Small font size (12px)
+   --flashchat-font-size-base: Base font size (14px)
+   --flashchat-font-size-lg: Large font size (16px)
+   --flashchat-font-size-xl: Extra large font size (18px)
+   
+   Usage Examples:
+   
+   Custom Theme:
+   .my-custom-theme {
+       --flashchat-primary: #ff6b35;
+       --flashchat-secondary: #f7931e;
+   }
+   
+   Custom Component:
+   .my-component {
+       padding: var(--flashchat-spacing-md);
+       border-radius: var(--flashchat-border-radius);
+       transition: var(--flashchat-transition);
+   }
+*/
+
+
+.badge {
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 500;
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: var(--flashchat-border-radius-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-success {
+    background-color: var(--flashchat-success);
+    color: white;
+}
+
+.badge-danger {
+    background-color: var(--flashchat-danger);
+    color: white;
+}
+
+.badge-warning {
+    background-color: var(--flashchat-warning);
+    color: var(--flashchat-dark);
+}
+
+.badge-info {
+    background-color: var(--flashchat-info);
+    color: white;
+}
+
+.badge-secondary {
+    background-color: var(--flashchat-muted);
+    color: white;
+}
+
+.indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--flashchat-spacing-xs);
+}
+
+.indicator.green {
+    background-color: var(--flashchat-success);
+}
+
+.indicator.red {
+    background-color: var(--flashchat-danger);
+}
+
+.indicator.orange {
+    background-color: var(--flashchat-warning);
+}
+
+.indicator.blue {
+    background-color: var(--flashchat-info);
+}
+
+.indicator.gray {
+    background-color: var(--flashchat-muted);
+}
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+.btn {
+    font-family: var(--flashchat-font-family);
+    font-weight: 500;
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: var(--flashchat-transition);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--flashchat-transition);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--flashchat-gradient);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--flashchat-gradient-dark);
+    transform: translateY(-1px);
+    box-shadow: var(--flashchat-shadow);
+    color: white;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background-color: var(--flashchat-success);
+    border-color: var(--flashchat-success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--flashchat-danger);
+    border-color: var(--flashchat-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+.btn-info {
+    background-color: var(--flashchat-info);
+    border-color: var(--flashchat-info);
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: white;
+}
+
+.btn-default,
+.btn-secondary {
+    background-color: var(--flashchat-light);
+    border-color: var(--flashchat-border);
+    color: var(--flashchat-dark);
+}
+
+.btn-default:hover,
+.btn-secondary:hover {
+    background-color: var(--flashchat-border);
+    border-color: var(--flashchat-muted);
+    color: var(--flashchat-dark);
+}
+
+.btn-block {
+    width: 100%;
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: var(--flashchat-border-radius);
+}
+
+.btn-sm {
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    font-size: var(--flashchat-font-size-xs);
+}
+
+.btn-xs {
+    padding: 2px var(--flashchat-spacing-xs);
+    font-size: var(--flashchat-font-size-xs);
+}
+
+/* ==========================================================================
+   Modal Styles
+   ========================================================================== */
+
+.modal-content {
+    border-radius: var(--flashchat-border-radius);
+    border: none;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    background: var(--flashchat-gradient);
+    color: white;
+    border-radius: var(--flashchat-border-radius) var(--flashchat-border-radius) 0 0;
+    border-bottom: none;
+    padding: var(--flashchat-spacing-lg);
+}
+
+.modal-header .modal-title {
+    color: white;
+    font-weight: 600;
+    margin: 0;
+}
+
+.modal-header .close {
+    color: white;
+    opacity: 0.8;
+    text-shadow: none;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
+    color: white;
+}
+
+.modal-body {
+    padding: var(--flashchat-spacing-lg);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--flashchat-border);
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    background: var(--flashchat-light);
+}
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
+.form-control {
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius-sm);
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    transition: var(--flashchat-transition);
+    font-size: var(--flashchat-font-size-sm);
+    font-family: var(--flashchat-font-family);
+}
+
+.form-control:focus {
+    border-color: var(--flashchat-primary);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    outline: none;
+}
+
+.form-group {
+    margin-bottom: var(--flashchat-spacing-md);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--flashchat-dark);
+    margin-bottom: var(--flashchat-spacing-xs);
+    font-size: var(--flashchat-font-size-sm);
+}
+
+.form-group .description {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    margin-top: var(--flashchat-spacing-xs);
+}
+
+/* ERPNext Form Integration */
+.frappe-control[data-fieldname*="flashchat"] .control-label {
+    color: var(--flashchat-primary);
+    font-weight: 600;
+}
+
+.frappe-control[data-fieldname*="flashchat"] .form-control {
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.frappe-control[data-fieldname*="flashchat"] .form-control:focus {
+    border-color: var(--flashchat-primary);
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* ==========================================================================
+   List View Customizations
+   ========================================================================== */
+
+.list-row[data-doctype*="FlashChat"] {
+    border-left: 4px solid transparent;
+    transition: var(--flashchat-transition);
+}
+
+.list-row[data-doctype*="FlashChat"]:hover {
+    background-color: var(--flashchat-light);
+    border-left-color: var(--flashchat-primary);
+    transform: translateX(2px);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Failed"] {
+    border-left-color: var(--flashchat-danger);
+    background-color: var(--flashchat-danger-light);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Delivered"] {
+    border-left-color: var(--flashchat-success);
+}
+
+.list-row[data-doctype="FlashChat Message Log"][data-status="Sent"] {
+    border-left-color: var(--flashchat-info);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Completed"] {
+    border-left-color: var(--flashchat-success);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Processing"] {
+    border-left-color: var(--flashchat-warning);
+}
+
+.list-row[data-doctype="FlashChat Campaign"][data-status="Failed"] {
+    border-left-color: var(--flashchat-danger);
+}
+
+/* ==========================================================================
+   Workflow Styles
+   ========================================================================== */
+
+.workflow-card {
+    background: var(--flashchat-background);
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-lg);
+    margin-bottom: var(--flashchat-spacing-md);
+    box-shadow: var(--flashchat-shadow);
+    transition: var(--flashchat-transition);
+    position: relative;
+}
+
+.workflow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--flashchat-gradient);
+    transform: scaleY(0);
+    transition: var(--flashchat-transition);
+}
+
+.workflow-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--flashchat-shadow-hover);
+}
+
+.workflow-card:hover::before {
+    transform: scaleY(1);
+}
+
+.workflow-status {
+    display: inline-block;
+    padding: var(--flashchat-spacing-xs) var(--flashchat-spacing-sm);
+    border-radius: 12px;
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.workflow-status.active {
+    background-color: var(--flashchat-success-light);
+    color: var(--flashchat-success);
+}
+
+.workflow-status.inactive {
+    background-color: var(--flashchat-danger-light);
+    color: var(--flashchat-danger);
+}
+
+.workflow-metrics {
+    display: flex;
+    gap: var(--flashchat-spacing-lg);
+    margin-top: var(--flashchat-spacing-md);
+    flex-wrap: wrap;
+}
+
+.workflow-metric {
+    text-align: center;
+    flex: 1;
+    min-width: 80px;
+}
+
+.workflow-metric .metric-value {
+    font-size: var(--flashchat-font-size-xl);
+    font-weight: 700;
+    color: var(--flashchat-primary);
+    display: block;
+}
+
+.workflow-metric .metric-label {
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: var(--flashchat-spacing-xs);
+}
+
+/* ==========================================================================
+   Standalone Dashboard Styles
+   ========================================================================== */
+
+.flashchat-standalone-dashboard {
+    min-height: 100vh;
+    background-color: var(--flashchat-light);
+    font-family: var(--flashchat-font-family);
+}
+
+.flashchat-standalone-dashboard .navbar {
+    box-shadow: var(--flashchat-shadow);
+    background: var(--flashchat-gradient) !important;
+}
+
+.flashchat-standalone-dashboard .navbar-brand {
+    font-weight: 600;
+    font-size: var(--flashchat-font-size-xl);
+    color: white !important;
+}
+
+.flashchat-standalone-dashboard .navbar-brand i {
+    margin-right: var(--flashchat-spacing-sm);
+}
+
+.flashchat-standalone-dashboard .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    transition: var(--flashchat-transition);
+}
+
+.flashchat-standalone-dashboard .nav-link:hover {
+    color: white !important;
+}
+
+.flashchat-standalone-dashboard .list-group-item {
+    border: none;
+    padding: var(--flashchat-spacing-md) var(--flashchat-spacing-lg);
+    transition: var(--flashchat-transition);
+    border-radius: 0;
+    background: transparent;
+}
+
+.flashchat-standalone-dashboard .list-group-item:hover {
+    background-color: var(--flashchat-light);
+    transform: translateX(5px);
+}
+
+.flashchat-standalone-dashboard .list-group-item.active {
+    background: var(--flashchat-gradient);
+    border-color: transparent;
+    color: white;
+}
+
+.flashchat-standalone-dashboard .list-group-item i {
+    margin-right: var(--flashchat-spacing-sm);
+    width: 16px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Message Preview Styles
+   ========================================================================== */
+
+.message-preview {
+    border: 1px solid var(--flashchat-border);
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-md);
+    background: var(--flashchat-light);
+    margin: var(--flashchat-spacing-md) 0;
+}
+
+.message-header {
+    border-bottom: 1px solid var(--flashchat-border);
+    padding-bottom: var(--flashchat-spacing-sm);
+    margin-bottom: var(--flashchat-spacing-md);
+    font-size: var(--flashchat-font-size-sm);
+    font-weight: 600;
+    color: var(--flashchat-dark);
+}
+
+.message-body {
+    padding: var(--flashchat-spacing-sm) 0;
+    line-height: 1.5;
+    font-size: var(--flashchat-font-size-sm);
+    color: var(--flashchat-dark);
+}
+
+.message-footer {
+    border-top: 1px solid var(--flashchat-border);
+    padding-top: var(--flashchat-spacing-sm);
+    margin-top: var(--flashchat-spacing-md);
+    font-size: var(--flashchat-font-size-xs);
+    color: var(--flashchat-muted);
+}
+
+/* ==========================================================================
+   Progress Indicators
+   ========================================================================== */
+
+.progress {
+    height: 6px;
+    border-radius: var(--flashchat-border-radius-sm);
+    background-color: var(--flashchat-border);
+    overflow: hidden;
+}
+
+.progress-sm {
+    height: 4px;
+}
+
+.progress-lg {
+    height: 10px;
+}
+
+.progress-bar {
+    background: var(--flashchat-gradient);
+    border-radius: var(--flashchat-border-radius-sm);
+    transition: width var(--flashchat-transition-slow);
+}
+
+.progress-circular {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: conic-gradient(var(--flashchat-primary) 0deg, var(--flashchat-border) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.progress-circular::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--flashchat-background);
+    position: absolute;
+}
+
+.progress-circular .progress-text {
+    position: relative;
+    z-index: 1;
+    font-size: var(--flashchat-font-size-xs);
+    font-weight: 600;
+    color: var(--flashchat-primary);
+}
+
+/* ==========================================================================
+   Alert Styles
+   ========================================================================== */
+
+.alert {
+    border-radius: var(--flashchat-border-radius);
+    padding: var(--flashchat-spacing-md);
+    border: 1px solid;
+    margin-bottom: var(--flashchat-spacing-md);
+}
+
+.alert-success {
+    background-color: var(--flashchat-success-light);
+    border-color: var(--flashchat-success);
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: var(--flashchat-danger-light);
+    border-color: var(--flashchat-danger);
+    color: #721c24;
+}
+
+.alert-warning {
+    background-color: var(--flashchat-warning-light);
+    border-color: var(--flashchat-warning);
+    color: #856404;
+}
+
+.alert-info {
+    background-color: var(--flashchat-info-light);
+    border-color: var(--flashchat-info);
+    color: #0c5460;
+}
+
+/* ==========================================================================
+   Tooltip Styles
+   ========================================================================== */
+
+.flashchat-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.flashchat-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    border-radius: var(--flashchat-border-radius-sm);
+    font-size: var(--flashchat-font-size-xs);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--flashchat-transition);
+    z-index: 1000;
+}
+
+.flashchat-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* ==========================================================================
+   Character Counter
+   ========================================================================== */
+
+.character-counter {
+    text-align: right;
+    font-size: var(--flashchat-font-size-xs);
+    margin-top: var(--flashchat-spacing-xs);
+    transition: var(--flashchat-transition);
+}
+
+.character-counter.text-muted {
+    color: var(--flashchat-muted);
+}
+
+.character-counter.text-warning {
+    color: var(--flashchat-warning);
+}
+
+.character-counter.text-danger {
+    color: var(--flashchat-danger);
+}
+
+/* ==========================================================================
+   Custom Scrollbar
+   ========================================================================== */
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--flashchat-light);
+    border-radius: var(--flashchat-border-radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--flashchat-muted);
+    border-radius: var(--flashchat-border-radius-sm);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--flashchat-dark);
+}
+
+/* ==========================================================================
+   Animation Classes
+   ========================================================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.4s ease-out;
+}
+
+/* ==========================================================================
+   Theme Variations
+   ========================================================================== */
+
+.flashchat-theme-blue {
+    --flashchat-primary: #007bff;
+    --flashchat-secondary: #6c757d;
+    --flashchat-gradient: linear-gradient(135deg, #007bff 0%, #6c757d 100%);
+}
+
+.flashchat-theme-green {
+    --flashchat-primary: #28a745;
+    --flashchat-secondary: #20c997;
+    --flashchat-gradient: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.flashchat-theme-purple {
+    --flashchat-primary: #6f42c1;
+    --flashchat-secondary: #e83e8c;
+    --flashchat-gradient: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%);
+}
+
+.flashchat-theme-orange {
+    --flashchat-primary: #fd7e14;
+    --flashchat-secondary: #ffc107;
+    --flashchat-gradient: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%);
+}
+
+/* ==========================================================================
+   Mobile Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --flashchat-spacing-xs: 3px;
+        --flashchat-spacing-sm: 6px;
+        --flashchat-spacing-md: 12px;
+        --flashchat-spacing-lg: 18px;
+        --flashchat-spacing-xl: 24px;
+    }
+    
+    .flashchat-widget .widget-head {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-sm);
+        text-align: center;
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .flashchat-widget .widget-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .stat-number {
+        font-size: 24px;
+    }
+    
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .stat-card .stat-icon {
+        margin-right: 0;
+        margin-bottom: var(--flashchat-spacing-md);
+    }
+    
+    .stat-card .stat-content h3 {
+        font-size: 28px;
+    }
+    
+    .workflow-metrics {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .campaign-item {
+        padding: var(--flashchat-spacing-sm);
+    }
+    
+    .modal-dialog {
+        margin: var(--flashchat-spacing-sm);
+    }
+    
+    .card-body {
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .table-responsive {
+        font-size: var(--flashchat-font-size-xs);
+    }
+    
+    .widget-actions-bar .btn {
+        font-size: var(--flashchat-font-size-xs);
+        padding: var(--flashchat-spacing-xs);
+    }
+}
+
+@media (max-width: 576px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .flashchat-dashboard {
+        padding: var(--flashchat-spacing-md) 0;
+    }
+    
+    .flashchat-dashboard .page-header {
+        margin-bottom: var(--flashchat-spacing-lg);
+        padding: var(--flashchat-spacing-lg);
+    }
+    
+    .flashchat-dashboard .page-header h1 {
+        font-size: 24px;
+        flex-direction: column;
+        text-align: center;
+        gap: var(--flashchat-spacing-sm);
+    }
+    
+    .stat-card .stat-content h3 {
+        font-size: 24px;
+    }
+    
+    .card-header {
+        padding: var(--flashchat-spacing-sm) var(--flashchat-spacing-md);
+    }
+    
+    .card-body {
+        padding: var(--flashchat-spacing-sm);
+    }
+    
+    .modal-body {
+        padding: var(--flashchat-spacing-md);
+    }
+    
+    .success-rate-text {
+        flex-direction: column;
+        gap: var(--flashchat-spacing-xs);
+        text-align: center;
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .flashchat-widget .widget-actions,
+    .btn,
+    .modal,
+    .navbar,
+    .widget-footer {
+        display: none !important;
+    }
+    
+    .flashchat-widget {
+        box-shadow: none;
+        border: 1px solid #000;
+        break-inside: avoid;
+    }
+    
+    .flashchat-widget .widget-head {
+        background: #000 !important;
+        color: #fff !important;
+    }
+    
+    .stat-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+    }
+    
+    .stats-grid {
+        display: block;
+    }
+    
+    .stat-item {
+        display: inline-block;
+        width: 23%;
+        margin: 1%;
+    }
+}
+
+/* ==========================================================================
+   Accessibility Features
+   ========================================================================== */
+
+/* Focus styles for keyboard navigation */
+.btn:focus,
+.form-control:focus,
+.list-group-item:focus {
+    outline: 2px solid var(--flashchat-primary);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .flashchat-widget {
+        border: 2px solid #000;
+    }
+    
+    .btn-primary {
+        background: #000;
+        border: 2px solid #000;
+    }
+    
+    .btn-primary:hover {
+        background: #333;
+        border-color: #333;
+    }
+    
+    .stat-number {
+        color: #000;
+        -webkit-text-fill-color: #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .fa-spin {
+        animation: none;
+    }
+    
+    .loading-indicator i {
+        animation: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --flashchat-light: #2d3748;
+        --flashchat-dark: #f7fafc;
+        --flashchat-background: #1a202c;
+        --flashchat-border: #4a5568;
+        --flashchat-muted: #a0aec0;
+    }
+    
+    .flashchat-widget {
+        background: var(--flashchat-background);
+        color: var(--flashchat-dark);
+    }
+    
+    .stat-item {
+        background: #2d3748;
+    }
+    
+    .card {
+        background: var(--flashchat-background);
+        color: var(--flashchat-dark);
+    }
+}

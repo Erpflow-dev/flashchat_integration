@@ -1,0 +1,26 @@
+[
+  {
+    "doctype": "Property Setter",
+    "doc_type": "Contact",
+    "field_name": "flashchat_section",
+    "property": "depends_on",
+    "value": "eval:doc.mobile_no",
+    "property_type": "Text"
+  },
+  {
+    "doctype": "Property Setter", 
+    "doc_type": "Customer",
+    "field_name": "flashchat_section",
+    "property": "depends_on",
+    "value": "eval:doc.mobile_no",
+    "property_type": "Text"
+  },
+  {
+    "doctype": "Property Setter",
+    "doc_type": "Lead", 
+    "field_name": "flashchat_section",
+    "property": "depends_on",
+    "value": "eval:doc.mobile_no",
+    "property_type": "Text"
+  }
+]

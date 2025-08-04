@@ -1,0 +1,218 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2025-01-01 00:00:00.000000",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contact_name",
+  "phone_number",
+  "email",
+  "column_break_4",
+  "flashchat_id",
+  "sync_status",
+  "last_sync",
+  "contact_details_section",
+  "first_name",
+  "last_name",
+  "company",
+  "column_break_10",
+  "designation",
+  "department",
+  "address",
+  "preferences_section",
+  "preferred_language",
+  "time_zone",
+  "marketing_consent",
+  "column_break_15",
+  "whatsapp_opt_in",
+  "sms_opt_in",
+  "do_not_disturb"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "FCC-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contact_name",
+   "fieldtype": "Data",
+   "label": "Contact Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "Phone Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "flashchat_id",
+   "fieldtype": "Data",
+   "label": "FlashChat ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sync_status",
+   "fieldtype": "Select",
+   "label": "Sync Status",
+   "options": "Pending\nSynced\nFailed",
+   "default": "Pending"
+  },
+  {
+   "fieldname": "last_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Sync",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contact_details_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Details"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "label": "First Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Data",
+   "label": "Company"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "label": "Department"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "preferences_section",
+   "fieldtype": "Section Break",
+   "label": "Preferences"
+  },
+  {
+   "fieldname": "preferred_language",
+   "fieldtype": "Select",
+   "label": "Preferred Language",
+   "options": "English\nArabic\nFrench\nSpanish",
+   "default": "English"
+  },
+  {
+   "fieldname": "time_zone",
+   "fieldtype": "Select",
+   "label": "Time Zone",
+   "options": "UTC\nAST\nGST\nIST\nCET\nEST\nPST",
+   "default": "UTC"
+  },
+  {
+   "fieldname": "marketing_consent",
+   "fieldtype": "Check",
+   "label": "Marketing Consent"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "whatsapp_opt_in",
+   "fieldtype": "Check",
+   "label": "WhatsApp Opt-in",
+   "default": 1
+  },
+  {
+   "fieldname": "sms_opt_in",
+   "fieldtype": "Check",
+   "label": "SMS Opt-in",
+   "default": 1
+  },
+  {
+   "fieldname": "do_not_disturb",
+   "fieldtype": "Check",
+   "label": "Do Not Disturb"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "FlashChat Integration",
+ "name": "FlashChat Contact",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "contact_name",
+ "track_changes": 1
+}
